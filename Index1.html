@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Workerman小蝌蚪互动聊天室 </title>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/mine.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="styles/style.css"> -->
+		<link href="https://fonts.font.im/css?family=Open+Sans" rel="stylesheet" type="text/css">
+		<meta name="viewport"
+			content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;" />
+		<meta name="apple-mobile-web-app-capable" content="YES">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+		<meta property="fb:app_id" content="149260988448984" />
+		<meta name="title" content="Workerman-todpole!" />
+		<meta name="description" content="小蝌蚪交互游戏程序 ，坐标实时推送、实时聊天等" />
+		<link rel="image_src" href="images/fb-image.jpg" />
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<div id="ui">
+			<div id="fps"></div>
+			<input id="chat" type="text" />
+			<div id="chatText"></div>
+
+
+			<div id="div_mine">
+				<div class="div_header">
+					<h3>我的</h3>
+					<div @click.stop="toggleShowMine">{{ showMine }}</div>
+				</div>
+				<div class="div_mine_info" v-if="showMineText">
+
+					<div class="div_user_info">
+						<div class="div_left">
+							<img class="img_avatar" src="images/default_user_icon.png" alt="默认头像">
+						</div>
+						<div class="div_mid">
+							<div class="div_user_name">
+								<p class="p_name">暧昧对象</p>
+								<img id="id_img_level" class="img_level" src="images/user_level1.png" alt="用户等级">
+							</div>
+							<div class="div_user_id">
+								<img class="img_id" src="images/id_icon.png" alt="ID">
+								<p class="p_id">123456</p>
+								<img class="img_id" src="images/copy_btn_img@3x.png" alt="ID">
+							</div>
+						</div>
+						<div class="div_right" @click.stop="goToMineCenter">
+							<img class="img_right_arrow" src="images/right_arrow.png" alt="右侧夹头">
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<aside id="frogMode">
+				<!-- <h1>李建建</h1>
+
+				<ul>
+					<li>def</li>
+					<li>thinkers</li>
+					<li>builders</li>
+				</ul>
+
+				<ol>
+					<li>1.0</li>
+					<li>2.0</li>
+					<li>3.0</li>
+				</ol>
+				<p>working together… </p>
+				<a href="https://www.baidu.com/">tony</a>
+				<a href="https://www.mozilla.org/zh-CN/about/manifesto/">Mozilla Manifesto</a> -->
+				<img class="img_tony" src="images/id_icon.png" />
+			</aside>
+			<!--        <aside id="frogMode">
+            <h3>Frog Mode</h3>
+            <section id="tadpoles">
+                <h4>1.Tadpoles</h4>
+                <ul id="tadpoleList">
+					<div class="cdiv_frog_img_text">
+						<img class="cimg_frog" src="images/fb-image.jpg" alt="">
+						<span class="cspan_text">玩九</span>
+					</div>
+                </ul>
+				<ul id="tadpoleList">
+					<div class="cdiv_frog_img_text">
+						<img class="cimg_frog" src="images/fb-image.jpg" alt="">
+						<span class="cspan_text">网络</span>
+					</div>
+				</ul>
+				<ul id="tadpoleList">
+					<div class="cdiv_frog_img_text">
+						<img class="cimg_frog" src="images/fb-image.jpg" alt="">
+						<span class="cspan_text">公司</span>
+					</div>
+				</ul>
+            </section>
+            <section id="console">
+                <h4>2.Console</h4>
+				<ul id="tadpoleList">
+					<div class="cdiv_frog_img_text">
+						<img class="cimg_frog" src="images/fb-image.jpg" alt="">
+						<span class="cspan_text">玩九</span>
+					</div>
+				</ul>
+				<ul id="tadpoleList">
+					<div class="cdiv_frog_img_text">
+						<img class="cimg_frog" src="images/fb-image.jpg" alt="">
+						<span class="cspan_text">网络</span>
+					</div>
+				</ul>
+				<ul id="tadpoleList">
+					<div class="cdiv_frog_img_text">
+						<img class="cimg_frog" src="images/fb-image.jpg" alt="">
+						<span class="cspan_text">公司</span>
+					</div>
+				</ul>
+            </section>
+        </aside> -->
+
+
+
+
+		</div>
+
+
+		<script src="js/lib/vue-2.6.11.min.js"></script>
+		<script src="js/lib/parseUri.js"></script>
+		<script src="js/lib/modernizr-1.5.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/lib/Stats.js"></script>
+
+		<!-- <script src="js/New.js"></script> -->
+		<script src="js/Tony.js"></script>
+		<script src="js/TestJS.js"></script>
+
+		<script src="js/App.js"></script>
+		<script src="js/Model.js"></script>
+		<script src="js/Settings.js"></script>
+		<script src="js/Keys.js"></script>
+		<script src="js/WebSocketService.js"></script>
+		<script src="js/Camera.js"></script>
+
+		<script src="js/Tadpole.js"></script>
+		<script src="js/TadpoleTail.js"></script>
+
+		<script src="js/Message.js"></script>
+		<script src="js/WaterParticle.js"></script>
+		<script src="js/Arrow.js"></script>
+		<script src="js/formControls.js"></script>
+
+		<script src="js/Cookie.js"></script>
+		<script src="js/main.js"></script>
+		<script type="text/javascript">
+			$("#world").bind("DOMNodeInserted", function(e) {
+				$(".logs .message .content[urlFlag='1']").each(function() {
+					var text = $(this).html();
+					if (text.indexOf("[") != -1 && text.indexOf("]") != -1) {
+						text = replaceUrl(text);
+						$(this).attr('urlFlag', '0');
+						$(this).html(text);
+					}
+				});
+			})
+			// document.querySelector("div_mine").addEventListener("click",function(){
+			// 	alert("dfadfs");
+			// });
+			let myImage = document.querySelector('id_img_level');
+
+			myImage.onclick = function() {
+				let mySrc = myImage.getAttribute('src');
+				if (mySrc === 'images/user_level1.png') {
+					myImage.setAttribute('src', 'images/payee_level1.png');
+				} else {
+					myImage.setAttribute('src', 'images/user_level1.png');
+				}
+			}
+		</script>
+	</body>
+</html>
